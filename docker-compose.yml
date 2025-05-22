@@ -1,0 +1,55 @@
+version: "3.9"
+services:
+  gateway-autofx:
+    image: gateway-autofx
+    container_name: gateway-autofx
+    networks:
+      - autofx-network
+    ports:
+      - "4040:4040"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - authentication-autofx
+      - discovery-server-autofx
+  authentication-autofx:
+    image: authentication-autofx
+    container_name: authentication-autofx
+    networks:
+      - autofx-network
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      MYSQL_USERNAME: autofx
+      MYSQL_PASSWORD: admin2025
+      SE: "p6F!9vQxR@8nZ#2LsE4u^J1mY*Bw7tKd"
+      D: 180
+    depends_on:
+      - mysql-autofx
+      - discovery-server-autofx
+  discovery-server-autofx:
+    image: discovery-server-autofx
+    container_name: discovery-server-autofx
+    ports:
+      - "8761:8761"
+    networks:
+      - autofx-network
+    depends_on:
+      - mysql-autofx
+  mysql-autofx:
+    image: mysql
+    container_name: mysql-autofx
+    environment:
+      MYSQL_ROOT_PASSWORD: autofx2025
+      MYSQL_DATABASE: autofx
+      MYSQL_USER: autofx
+      MYSQL_PASSWORD: admin2025
+    ports:
+      - "3307:3306"
+    networks:
+      - autofx-network
+    volumes:
+      - mysql-volume:/var/lib/mysql
+networks:
+  autofx-network:
+volumes:
+  mysql-volume:

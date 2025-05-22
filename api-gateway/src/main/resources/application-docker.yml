@@ -1,0 +1,5 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-server-autofx:8761/eureka/
+    fetch-registry: true

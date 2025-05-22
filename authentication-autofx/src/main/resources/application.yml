@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: authentication-autofx
+  profiles:
+    active: dev
+authorization:
+  jwt:
+    secret: ${SE}
+    expiration:
+      days: ${D}
+eureka:
+  instance:
+    instance-id: "${spring.application.name}:${random.value}"
+  client:
+    service-url:
+      defaultZone: http://discovery-server-autofx:8761/eureka/
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api/authentication-autofx/v3/api-docs
+  swagger-ui:
+    path: /api/authentication-autofx/swagger-ui.html
+  default-produces-media-type: application/json
+server:
+  port: 0
