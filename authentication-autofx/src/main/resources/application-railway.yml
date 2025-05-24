@@ -15,6 +15,7 @@ spring:
     show-sql: true
 eureka:
   instance:
+    hostname: authentication-autofx
     instance-id: "${spring.application.name}:${random.value}"
   client:
     service-url:
