@@ -19,3 +19,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://discovery-server-autofx:8761/eureka/
+openapi:
+  server-url: http://localhost:4040

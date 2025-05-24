@@ -9,6 +9,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,12 +27,15 @@ import java.util.List;
         scheme = "bearer"
 )
 public class OpenApiConfiguration {
+    @Value("${openapi.server-url:http://localhost:4040}")
+    private String serverUrl;
+
     @Bean
     public OpenAPI autofxPlatformOpenApi() {
 
         return new OpenAPI()
                 .servers(List.of(
-                        new Server().url("http://localhost:4040")
+                        new Server().url(serverUrl)
                 ))
                 .info(new Info().title("AutoFX Platform API")
                         .description(

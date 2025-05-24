@@ -20,3 +20,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://discovery-server:8761/eureka/
+
+openapi:
+  server-url: https://api-gateway-server-production.up.railway.app
